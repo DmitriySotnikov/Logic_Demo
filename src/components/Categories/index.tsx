@@ -136,7 +136,7 @@ export const Categories: FC<IProps> = ({ctg, setCategory}) => {
             document.removeEventListener('keydown', onKeypress);
             document.removeEventListener('keyup', onKeypress);
         };
-    }, [categories]);
+    }, [categories, activeId]);
 
 
 
