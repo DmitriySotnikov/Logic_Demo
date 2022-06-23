@@ -118,6 +118,11 @@ export const Categories: FC<IProps> = ({ctg, setCategory}) => {
     useEffect(() => {
 
         const onKeypress = (e: KeyboardEvent) => {
+
+            const deleteCategory = (id: string) => {
+                setCategories(categories.filter( el => el.id !== id) )
+            }
+
             if (e.key === "Delete") {
                 deleteCategory(activeId)
             }
@@ -137,10 +142,6 @@ export const Categories: FC<IProps> = ({ctg, setCategory}) => {
 
     const addCategories = () => {
         setCategories([...categories, ...CategoriesDateDuplication])
-    }
-
-    const deleteCategory = (id: string) => {
-        setCategories(categories.filter( el => el.id !== id) )
     }
 
     return (
@@ -167,7 +168,7 @@ export const Categories: FC<IProps> = ({ctg, setCategory}) => {
                             title={el.title}
                             key={el.id}
                         />
-                        )
+                    )
                 }
             </div>
             <div className="categories__buttons">
