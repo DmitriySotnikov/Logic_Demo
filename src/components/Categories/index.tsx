@@ -1,5 +1,5 @@
 import React, {FC, useEffect, useState} from 'react';
-import {genId} from "../../utils/uuid"
+import {genId} from "../../utils/uuid";
 import {Card} from "../Card";
 
 const CategoriesDate = [
