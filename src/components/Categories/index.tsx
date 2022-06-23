@@ -111,8 +111,6 @@ interface IProps {
 
 export const Categories: FC<IProps> = ({ctg, setCategory}) => {
 
-    const [active, setActive] = useState(false)
-
     const [activeId, setActiveId] = useState<string>("")
 
     const [categories, setCategories] = useState<ICategory[]>([...CategoriesDate])
