@@ -6,22 +6,19 @@ import {ICategory} from "../../models/ICatagory";
 interface IProps {
     categories: ICategory[]
     setCategory: (arg:string) => void
+    deleteCategory: (id:string) => void
 }
 
-export const Categories: FC<IProps> = ({setCategory, categories}) => {
+export const Categories: FC<IProps> = ({setCategory, categories, deleteCategory}) => {
 
-    const [activeId, setActiveId] = useState<string>("")
-
+    const [activeId, setActiveId] = useState("")
 
     useEffect(() => {
 
         const onKeypress = (e: KeyboardEvent) => {
 
-            const deleteCategory = (id: string) => {
-                //setCategories(categories.filter( el => el.id !== id) )
-            }
-
             if (e.key === "Delete") {
+                //console.log(activeId)
                 deleteCategory(activeId)
             }
         };
@@ -34,7 +31,7 @@ export const Categories: FC<IProps> = ({setCategory, categories}) => {
             document.removeEventListener('keydown', onKeypress);
             document.removeEventListener('keyup', onKeypress);
         };
-    }, [categories, activeId]);
+    }, [activeId]);
 
 
     return (
@@ -42,14 +39,18 @@ export const Categories: FC<IProps> = ({setCategory, categories}) => {
             <div className="categories__content-cards">
                 {
                     categories.map( el =>
-                        <Card
+                        <div
+                            className={activeId === el.id ? "card card--active" : "card"} key={el.id}
+                            onClick={() => setActiveId(el.id)}
+                        >
+                            <Card
                             id={el.id}
-                            setActiveId={(id: string) => setActiveId(id)}
                             setCategory={(category) => setCategory(category)}
                             categoryName={el.categoryName}
                             title={el.title}
                             key={el.id}
                         />
+                        </div>
                     )
                 }
             </div>
