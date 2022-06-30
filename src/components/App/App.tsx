@@ -10,7 +10,7 @@ import {ICategory} from "../../models/ICatagory";
 function App() {
 
     const [categories, setCategories] = useState<ICategory[]>([])
-    const [parameter, setParameter] = useState("")
+    const [selector, setSelector] = useState("")
 
     const getAllProducts = async () => {
           return await axios.get<ICategory[]>(`categories.json`)
@@ -20,7 +20,7 @@ function App() {
         getAllProducts()
             .then(res => setCategories(res.data))
             .catch(res => console.log(res.message))
-    }, [parameter])
+    }, [selector])
 
     const filterCategory = (arg: string) => {
         return arg !== ""
@@ -38,9 +38,9 @@ function App() {
         <div>
             <Header/>
             <div className="container">
-                <Selectors setParameter={setParameter}/>
+                <Selectors setSelector={setSelector} selector={selector}/>
                 <Categories
-                    categories={filterCategory(parameter)}
+                    categories={filterCategory(selector)}
                     setCategory={(category) => setCategories(categories)}
                     deleteCategory={(id:string) => deleteCategory(id)}
                 />

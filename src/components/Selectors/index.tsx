@@ -1,49 +1,61 @@
 import React, {FC} from "react";
 
 interface IProps {
-    setParameter: (arg: string) => void
+    selector: string
+    setSelector: (arg: string) => void
 }
 
-export const Selectors: FC<IProps> = ({setParameter}) => {
+export const Selectors: FC<IProps> = ({selector, setSelector}) => {
+
+    const selectors = [
+        {
+            id: 0,
+            name: "Show All",
+            value: ""
+        },
+        {
+            id: 1,
+            name: "Design",
+            value: "Design"
+        },
+        {
+            id: 2,
+            name: "Branding",
+            value: "Branding"
+        },
+        {
+            id: 3,
+            name: "Illustrations",
+            value: "Illustrations"
+        },
+        {
+            id: 4,
+            name: "Motions",
+            value: "Motions"
+        },
+    ]
+
+    const onSelect = (event: React.ChangeEvent<HTMLSelectElement>) => setSelector(event.target.value)
 
     return (
         <div className="selectors">
             <div className="selectors__list">
-                <div
-                    className="selectors__items selectors__items--active"
-                    onClick={() => setParameter("")}
-                >
-                    Show All
-                </div>
-                <div
-                    className="selectors__items"
-                    onClick={() => setParameter("Design")}
-                >
-                    Design
-                </div>
-                <div
-                    className="selectors__items"
-                    onClick={() => setParameter("Branding")}
-                >
-                    Branding
-                </div>
-                <div
-                    className="selectors__items"
-                    onClick={() => setParameter("Illustrations")}
-                >
-                    Illustrations
-                </div>
-                <div
-                    className="selectors__items"
-                    onClick={() => setParameter("Motions")}
-                >
-                    Motions
-                </div>
+                {
+                    selectors.map( el =>
+                        <div className="selectors__items" key={el.id}
+                             onClick={() => setSelector(el.value)}
+                        >
+                            {el.name}
+                        </div>
+                    )
+                }
             </div>
             <div className="selectors__form">
                 <form>
-                    <select className="selectors__select">
-                        <option value="" placeholder="Show All">Show All</option>
+                    <select onChange={e => onSelect(e)} value={selector} className="selectors__select">
+                        { selectors.map( el => <option
+                            key={el.id}
+                        >{el.name}</option>)}
                     </select>
                 </form>
             </div>
