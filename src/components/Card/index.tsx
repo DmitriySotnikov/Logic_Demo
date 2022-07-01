@@ -1,24 +1,22 @@
 import React, {FC} from 'react';
+import {useAppDispatch} from "../../hooks/redux";
+import { setSelector } from '../../store/reducer/categorySlice';
 
 interface IProps {
     id: string
-    setCategory: (arg:string) => void
     categoryName: string
     title: string
 }
 
-export const Card:FC<IProps> = (
-    {
-        setCategory,
-        categoryName,
-        title,
-    }) => {
+export const Card:FC<IProps> = ({categoryName, title}) => {
+
+     const dispatch = useAppDispatch()
 
     return (
         <div className="card__inner">
             <div
                 className="card__category-button"
-                onClick={() => setCategory(categoryName)}
+                onClick={() => dispatch(setSelector({selector: categoryName}))}
             >
                 {categoryName}
             </div>

@@ -1,11 +1,8 @@
 import React, {FC} from "react";
+import {useAppDispatch, useAppSelector} from "../../hooks/redux";
+import {setSelector} from "../../store/reducer/categorySlice";
 
-interface IProps {
-    selector: string
-    setSelector: (arg: string) => void
-}
-
-export const Selectors: FC<IProps> = ({selector, setSelector}) => {
+export const Selectors: FC = () => {
 
     const selectors = [
         {
@@ -35,15 +32,20 @@ export const Selectors: FC<IProps> = ({selector, setSelector}) => {
         },
     ]
 
-    const onSelect = (event: React.ChangeEvent<HTMLSelectElement>) => setSelector(event.target.value)
+    const dispatch = useAppDispatch()
+    const {selector} = useAppSelector(state => state.categories)
+
+    const onSelect = (event: React.ChangeEvent<HTMLSelectElement>) => dispatch(setSelector({selector: event.target.value}))
 
     return (
         <div className="selectors">
             <div className="selectors__list">
                 {
                     selectors.map( el =>
-                        <div className="selectors__items" key={el.id}
-                             onClick={() => setSelector(el.value)}
+                        <div
+                            className="selectors__items"
+                            key={el.id}
+                            onClick={() => dispatch(setSelector({selector: el.value}))}
                         >
                             {el.name}
                         </div>
@@ -52,10 +54,19 @@ export const Selectors: FC<IProps> = ({selector, setSelector}) => {
             </div>
             <div className="selectors__form">
                 <form>
-                    <select onChange={e => onSelect(e)} value={selector} className="selectors__select">
-                        { selectors.map( el => <option
-                            key={el.id}
-                        >{el.name}</option>)}
+                    <select
+                        className="selectors__select"
+                        onChange={e => onSelect(e)}
+                        value={selector}
+                    >
+                        {
+                            selectors.map( el => <option
+                                value={el.value}
+                                key={el.id}
+                            >
+                                {el.name}
+                            </option>)
+                        }
                     </select>
                 </form>
             </div>

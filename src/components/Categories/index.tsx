@@ -1,51 +1,40 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC, useEffect} from 'react';
 import {Card} from "../Card";
-import {ICategory} from "../../models/ICatagory";
+import {useAppDispatch, useAppSelector} from "../../hooks/redux";
+import {deleteCategory, setActiveId } from '../../store/reducer/categorySlice';
 
+export const Categories: FC = () => {
 
-interface IProps {
-    categories: ICategory[]
-    setCategory: (arg:string) => void
-    deleteCategory: (id:string) => void
-}
-
-export const Categories: FC<IProps> = ({setCategory, categories, deleteCategory}) => {
-
-    const [activeId, setActiveId] = useState("")
+    const dispatch = useAppDispatch()
+    const {categories, isActiveId} = useAppSelector(state => state.categories)
 
     useEffect(() => {
-
         const onKeypress = (e: KeyboardEvent) => {
-
             if (e.key === "Delete") {
-                //console.log(activeId)
-                deleteCategory(activeId)
             }
         };
-
         document.addEventListener('keydown', onKeypress);
         document.addEventListener('keyup', onKeypress);
-
         return () => {
-
             document.removeEventListener('keydown', onKeypress);
             document.removeEventListener('keyup', onKeypress);
         };
-    }, [activeId]);
+    }, [categories]);
 
+    const onActiveClass = (id: string) => id === isActiveId ? dispatch(setActiveId({id: ""})) : dispatch(setActiveId({id}));
 
     return (
         <div className="categories">
+            <button onClick={() => dispatch(deleteCategory({id: isActiveId}))}>Удалить</button>
             <div className="categories__content-cards">
                 {
                     categories.map( el =>
                         <div
-                            className={activeId === el.id ? "card card--active" : "card"} key={el.id}
-                            onClick={() => setActiveId(el.id)}
+                            className={el.id === isActiveId ? "card card--active" : "card"} key={el.id}
+                            onClick={() => onActiveClass(el.id)}
                         >
                             <Card
                             id={el.id}
-                            setCategory={(category) => setCategory(category)}
                             categoryName={el.categoryName}
                             title={el.title}
                             key={el.id}
