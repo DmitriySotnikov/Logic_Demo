@@ -2,6 +2,14 @@
   width: 100%;
   color: $white-primary;
   font-family: sans-serif;
+  &__delete-item{
+    width: 100%;
+    height: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
   &__content-cards{
     display: flex;
     flex-wrap: wrap;
