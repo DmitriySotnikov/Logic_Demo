@@ -10,7 +10,7 @@ import {fetchAllCategories} from "../../service";
 export const App: FC = () => {
 
     const dispatch = useAppDispatch()
-    const {isLoading, error} = useAppSelector(state => state.categories)
+    const {error, categories} = useAppSelector(state => state.categories)
 
     useEffect(() => {
         dispatch(fetchAllCategories())

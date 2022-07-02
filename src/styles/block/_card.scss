@@ -13,10 +13,10 @@
     min-width: 100px;
     height: 30px;
     border-radius: 20px;
-    border-color: #424242;
+    border-color: $dark-grey;
     font-size: 15px;
     font-weight: 600;
-    color: #424242;
+    color: $dark-grey;
     display: none;
     &--active{
       display: block;

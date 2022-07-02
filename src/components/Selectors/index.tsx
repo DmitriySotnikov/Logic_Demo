@@ -1,6 +1,7 @@
 import React, {FC} from "react";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
-import {setSelector} from "../../store/reducer/categorySlice";
+import {selectCategory, setSelector} from "../../store/reducer/categorySlice";
+
 
 export const Selectors: FC = () => {
 
@@ -37,6 +38,11 @@ export const Selectors: FC = () => {
 
     const onSelect = (event: React.ChangeEvent<HTMLSelectElement>) => dispatch(setSelector({selector: event.target.value}))
 
+    const selectorHandler = (value: string) => {
+        dispatch(setSelector({selector: value}))
+        return dispatch(selectCategory(value))
+    }
+
     return (
         <div className="selectors">
             <div className="selectors__list">
@@ -45,7 +51,7 @@ export const Selectors: FC = () => {
                         <div
                             className="selectors__items"
                             key={el.id}
-                            onClick={() => dispatch(setSelector({selector: el.value}))}
+                            onClick={() => selectorHandler(el.value)}
                         >
                             {el.name}
                         </div>

@@ -4,6 +4,7 @@ import {ICategory} from "../../models/ICatagory";
 import {fetchAllCategories} from "../../service";
 
 interface CategoryState {
+    filteredCategories: ICategory[]
     categories: ICategory[]
     isLoading: boolean
     error: string
@@ -12,6 +13,7 @@ interface CategoryState {
 }
 
 const initialState: CategoryState = {
+    filteredCategories: [],
     categories: [],
     isLoading: false,
     error: "",
@@ -32,6 +34,16 @@ const categorySlice = createSlice({
         deleteCategory(state, action: PayloadAction<{id: string}>) {
             const index = state.categories.findIndex(e => e.id === action.payload.id)
             if (index !== -1) { state.categories.splice(index, 1)}
+        },
+        selectCategory(state, action: PayloadAction<string>) {
+            if (action.payload) {
+                state.filteredCategories = []
+                state.categories.forEach((category, i) => {
+                    if (category.categoryName === action.payload){
+                        state.filteredCategories.push({...category})
+                    }
+                })
+            } else state.filteredCategories = state.categories
         }
     },
     extraReducers: (builder) => {
@@ -40,6 +52,7 @@ const categorySlice = createSlice({
         })
         builder.addCase(fetchAllCategories.fulfilled, (state, action: PayloadAction<ICategory[]>) => {
             state.isLoading = false
+            state.filteredCategories = action.payload
             state.categories = action.payload
         })
         builder.addCase(fetchAllCategories.rejected, (state, action: PayloadAction<any>) => {
@@ -50,6 +63,7 @@ const categorySlice = createSlice({
 });
 
 export const {
+    selectCategory,
     setActiveId,
     setSelector,
     deleteCategory
