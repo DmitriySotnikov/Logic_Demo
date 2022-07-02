@@ -6,6 +6,7 @@ import {deleteCategory, selectCategory, setActiveId} from '../../store/reducer/c
 export const Categories: FC = () => {
 
     const dispatch = useAppDispatch()
+    const [isShow, setIsShow] = useState(false)
     const {categories, filteredCategories, isActiveId, selector, isLoading} = useAppSelector(state => state.categories)
 
     useEffect(() => {
@@ -22,10 +23,8 @@ export const Categories: FC = () => {
         };
     }, [isActiveId, categories]);
 
-    const [isShow, setIsShow] = useState(false)
-
     if (isLoading){
-        return <div>Загрузка</div>
+        return <h1 style={{display: "flex", justifyContent: "center"}}>Загрузка...</h1>
     }
 
     const onActiveClass = (id: string) => {
@@ -46,14 +45,6 @@ export const Categories: FC = () => {
 
     return (
         <div className="categories">
-            <div className="categories__delete-item">
-                <button
-                    className={isShow ? "card__del-button card__del-button--active": "card__del-button"}
-                    onClick={() => deleteButtonHandler()}
-                >
-                    Удалить
-                </button>
-            </div>
             <div className="categories__content-cards">
                 {
                     filteredCategories.map( el =>
@@ -62,10 +53,11 @@ export const Categories: FC = () => {
                             onClick={() => onActiveClass(el.id)}
                         >
                             <Card
-                                id={el.id}
+                                isShow={el.id === isActiveId}
                                 categoryName={el.categoryName}
                                 title={el.title}
                                 key={el.id}
+                                deleteButtonHandler={deleteButtonHandler}
                             />
                         </div>
                     )

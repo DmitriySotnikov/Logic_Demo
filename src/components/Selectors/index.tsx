@@ -49,7 +49,7 @@ export const Selectors: FC = () => {
                 {
                     selectors.map( el =>
                         <div
-                            className="selectors__items"
+                            className={selector === el.value ? "selectors__items selectors__items--active": "selectors__items"}
                             key={el.id}
                             onClick={() => selectorHandler(el.value)}
                         >

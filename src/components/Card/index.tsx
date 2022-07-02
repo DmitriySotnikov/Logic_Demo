@@ -1,19 +1,28 @@
 import React, {FC} from 'react';
-import {useAppDispatch} from "../../hooks/redux";
+import { useAppDispatch } from "../../hooks/redux";
 import { setSelector } from '../../store/reducer/categorySlice';
 
 interface IProps {
-    id: string
+    isShow: boolean
     categoryName: string
     title: string
+    deleteButtonHandler: () => void
 }
 
-export const Card:FC<IProps> = ({categoryName, title}) => {
+export const Card:FC<IProps> = ({isShow, categoryName, title, deleteButtonHandler}) => {
 
-     const dispatch = useAppDispatch()
+    const dispatch = useAppDispatch()
 
     return (
         <div className="card__inner">
+            <div className="categories__delete-item">
+                <button
+                    className={isShow ? "card__del-button card__del-button--active": "card__del-button"}
+                    onClick={() => deleteButtonHandler()}
+                >
+                    Удалить
+                </button>
+            </div>
             <div
                 className="card__category-button"
                 onClick={() => dispatch(setSelector({selector: categoryName}))}
