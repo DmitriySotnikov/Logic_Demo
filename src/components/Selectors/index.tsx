@@ -33,15 +33,18 @@ export const Selectors: FC = () => {
         },
     ]
 
-    const dispatch = useAppDispatch()
-    const {selector} = useAppSelector(state => state.categories)
+    const dispatch = useAppDispatch();
+    const {selector} = useAppSelector(state => state.categories);
 
-    const onSelect = (event: React.ChangeEvent<HTMLSelectElement>) => dispatch(setSelector({selector: event.target.value}))
+    const onSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        dispatch(setSelector({selector: event.target.value}))
+        dispatch(selectCategory(event.target.value))
+    };
 
     const selectorHandler = (value: string) => {
         dispatch(setSelector({selector: value}))
         dispatch(selectCategory(value))
-    }
+    };
 
     return (
         <div className="selectors">
