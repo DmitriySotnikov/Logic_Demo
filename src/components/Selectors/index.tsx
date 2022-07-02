@@ -40,7 +40,7 @@ export const Selectors: FC = () => {
 
     const selectorHandler = (value: string) => {
         dispatch(setSelector({selector: value}))
-        return dispatch(selectCategory(value))
+        dispatch(selectCategory(value))
     }
 
     return (
