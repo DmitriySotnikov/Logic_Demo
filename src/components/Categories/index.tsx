@@ -1,13 +1,13 @@
 import React, {FC, useEffect, useState} from 'react';
 import {Card} from "../Card";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
-import {deleteCategory, selectCategory, setActiveId} from '../../store/reducer/categorySlice';
+import {deleteCategory, selectionCategory, setActiveId} from '../../store/reducer/categorySlice';
 
 export const Categories: FC = () => {
 
     const dispatch = useAppDispatch()
     const [isShow, setIsShow] = useState(false)
-    const {categories, filteredCategories, isActiveId, selector, isLoading} = useAppSelector(state => state.categories)
+    const {filteredCategories, isActiveId, selector, isLoading} = useAppSelector(state => state.categories)
 
     useEffect(() => {
         const onKeypress = (e: KeyboardEvent) => {
@@ -16,12 +16,12 @@ export const Categories: FC = () => {
             }
         };
         document.addEventListener('keydown', onKeypress);
-        document.addEventListener('keyup', onKeypress);
+        //document.addEventListener('keyup', onKeypress);
         return () => {
             document.removeEventListener('keydown', onKeypress);
             document.removeEventListener('keyup', onKeypress);
         };
-    }, [isActiveId, categories]);
+    }, [isActiveId]);
 
     if (isLoading){
         return <h1 style={{display: "flex", justifyContent: "center"}}>Загрузка...</h1>
@@ -29,17 +29,17 @@ export const Categories: FC = () => {
 
     const onActiveClass = (id: string) => {
         if (id === isActiveId) {
-            dispatch(setActiveId({id: ""}))
+            dispatch(setActiveId(""))
             setIsShow(false)
         } else {
-            dispatch(setActiveId({id}))
+            dispatch(setActiveId(id))
             setIsShow(true)
         }
     }
 
     const deleteButtonHandler = () => {
-        dispatch(deleteCategory({id: isActiveId}))
-        dispatch(selectCategory(selector))
+        dispatch(deleteCategory(isActiveId))
+        dispatch(selectionCategory(selector))
         setIsShow(false)
     }
 

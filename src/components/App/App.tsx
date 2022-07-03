@@ -5,6 +5,7 @@ import {Categories} from "../Categories";
 import {Selectors} from "../Selectors";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 import {fetchAllCategories} from "../../service";
+import {Sort} from "../Sort";
 
 
 export const App: FC = () => {
@@ -20,6 +21,7 @@ export const App: FC = () => {
         <div>
             <Header/>
             <div className="container">
+                <Sort/>
                 <Selectors />
                 <Categories/>
             </div>

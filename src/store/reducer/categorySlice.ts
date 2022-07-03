@@ -25,25 +25,28 @@ const categorySlice = createSlice({
     name: 'categories',
     initialState,
     reducers: {
-        setSelector(state, action: PayloadAction<{selector: string}>) {
-            state.selector = action.payload.selector
+        setSelector(state, {payload}: PayloadAction<string>) {
+            state.selector = payload
         },
-        setActiveId(state, action: PayloadAction<{id: string}>) {
-            state.isActiveId = action.payload.id
+        setActiveId(state, {payload}: PayloadAction<string>) {
+            state.isActiveId = payload
         },
-        deleteCategory(state, action: PayloadAction<{id: string}>) {
-            const index = state.categories.findIndex(e => e.id === action.payload.id)
+        deleteCategory(state, {payload}: PayloadAction<string>) {
+            const index = state.categories.findIndex(e => e.id === payload)
             if (index !== -1) { state.categories.splice(index, 1)}
         },
-        selectCategory(state, action: PayloadAction<string>) {
-            if (action.payload) {
+        selectionCategory(state, {payload}: PayloadAction<string>) {
+            if (payload) {
                 state.filteredCategories = []
                 state.categories.forEach((category, i) => {
-                    if (category.categoryName === action.payload){
+                    if (category.categoryName === payload){
                         state.filteredCategories.push({...category})
                     }
                 })
             } else state.filteredCategories = state.categories
+        },
+        sortCategories(state, {payload}: PayloadAction<string>) {
+            state.categories = Object.values(state.categories).sort((x: ICategory, y: ICategory ) => x[payload].localeCompare(y[payload]))
         }
     },
     extraReducers: (builder) => {
@@ -63,10 +66,11 @@ const categorySlice = createSlice({
 });
 
 export const {
-    selectCategory,
+    selectionCategory,
     setActiveId,
     setSelector,
-    deleteCategory
+    deleteCategory,
+    sortCategories
 } = categorySlice.actions;
 
 export default categorySlice.reducer;

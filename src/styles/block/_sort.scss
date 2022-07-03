@@ -1,0 +1,17 @@
+.sort{
+  padding: 20px 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  &__title{
+    font-size: 17px;
+    font-weight: 600;
+  }
+  &__selector{
+    padding: 5px;
+    margin: 10px 0;
+    min-width: 150px;
+    height: 30px;
+    border-radius: 15px;
+  }
+}

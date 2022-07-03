@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import { useAppDispatch } from "../../hooks/redux";
-import {selectCategory, setSelector} from '../../store/reducer/categorySlice';
+import {selectionCategory, setSelector} from '../../store/reducer/categorySlice';
 
 interface IProps {
     isShow: boolean
@@ -15,8 +15,8 @@ export const Card:FC<IProps> = ({isShow, categoryName, title, deleteButtonHandle
 
     const selectorHandler = (value: string, e:  React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         e.stopPropagation()
-        dispatch(setSelector({selector: value}))
-        dispatch(selectCategory(value))
+        dispatch(setSelector(value))
+        dispatch(selectionCategory(value))
     }
 
     return (

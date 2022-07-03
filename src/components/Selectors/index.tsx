@@ -1,6 +1,6 @@
 import React, {FC} from "react";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
-import {selectCategory, setSelector} from "../../store/reducer/categorySlice";
+import {selectionCategory, setSelector} from "../../store/reducer/categorySlice";
 
 
 export const Selectors: FC = () => {
@@ -36,14 +36,9 @@ export const Selectors: FC = () => {
     const dispatch = useAppDispatch();
     const {selector} = useAppSelector(state => state.categories);
 
-    const onSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        dispatch(setSelector({selector: event.target.value}))
-        dispatch(selectCategory(event.target.value))
-    };
-
     const selectorHandler = (value: string) => {
-        dispatch(setSelector({selector: value}))
-        dispatch(selectCategory(value))
+        dispatch(setSelector(value))
+        dispatch(selectionCategory(value))
     };
 
     return (
@@ -52,7 +47,11 @@ export const Selectors: FC = () => {
                 {
                     selectors.map( el =>
                         <div
-                            className={selector === el.value ? "selectors__items selectors__items--active": "selectors__items"}
+                            className={
+                                selector === el.value
+                                ? "selectors__items selectors__items--active"
+                                : "selectors__items"
+                            }
                             key={el.id}
                             onClick={() => selectorHandler(el.value)}
                         >
@@ -65,7 +64,7 @@ export const Selectors: FC = () => {
                 <form>
                     <select
                         className="selectors__select"
-                        onChange={e => onSelect(e)}
+                        onChange={e => selectorHandler(e.target.value)}
                         value={selector}
                     >
                         {
