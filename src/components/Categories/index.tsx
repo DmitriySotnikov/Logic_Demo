@@ -56,6 +56,7 @@ export const Categories: FC = () => {
                                 isShow={el.id === isActiveId}
                                 categoryName={el.categoryName}
                                 title={el.title}
+                                date={el.date}
                                 key={el.id}
                                 deleteButtonHandler={deleteButtonHandler}
                             />

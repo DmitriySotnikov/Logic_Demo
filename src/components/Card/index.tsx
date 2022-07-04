@@ -6,10 +6,11 @@ interface IProps {
     isShow: boolean
     categoryName: string
     title: string
+    date: string
     deleteButtonHandler: () => void
 }
 
-export const Card:FC<IProps> = ({isShow, categoryName, title, deleteButtonHandler}) => {
+export const Card:FC<IProps> = ({isShow, categoryName, title,date, deleteButtonHandler}) => {
 
     const dispatch = useAppDispatch()
 
@@ -36,6 +37,7 @@ export const Card:FC<IProps> = ({isShow, categoryName, title, deleteButtonHandle
                 {categoryName}
             </div>
             <span className="card__title">{title}</span>
+            <span className="card__date">{date}</span>
         </div>
     );
 };

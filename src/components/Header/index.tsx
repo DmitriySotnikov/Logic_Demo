@@ -7,20 +7,17 @@ export const Header: FC = () => {
             <div className="header__container">
                 <div className="header__nav">
                     <div className="header__logo">
-                        Agency
+                        Demo
                     </div>
                     <div className="header__links">
                         <Link className="header__link-item" to={"#"}>
                             About
                         </Link>
                         <Link className="header__link-item" to={"#"}>
-                            Service
+                            Favorite
                         </Link>
                         <Link className="header__link-item" to={"#"}>
-                            Pricing
-                        </Link>
-                        <Link className="header__link-item" to={"#"}>
-                            Blog
+                            Contact
                         </Link>
                     </div>
                     <button className="header__button-contact">
@@ -30,8 +27,9 @@ export const Header: FC = () => {
                 <div className="header__bottom">
                     <span className="header__bottom-title">Portfolio</span>
                     <span className="header__bottom-info">
-                        Agency provides a full service range including technical
-                        skills, design, business understanding.
+                        This mini application demonstrates my
+                        level of work with the logic of the
+                        React Single Page Application
                     </span>
                 </div>
             </div>
