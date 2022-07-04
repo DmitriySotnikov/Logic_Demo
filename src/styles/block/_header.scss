@@ -4,7 +4,11 @@
   height: 460px;
   color: $white-primary;
   font-family: sans-serif;
+  @media (max-width: 830px) {
+    height: 550px;
+  }
   &__container{
+    height: 100%;
     margin: 0 auto;
     padding: 0 30px;
     @media (min-width: 1200px) {
@@ -15,7 +19,7 @@
     }
     @media (max-width: 830px) {
       width: 320px;
-      .header__links{
+      .header__logo{
         display: none;
       }
       .header__button-contact{
@@ -23,6 +27,16 @@
       }
       .header__nav{
         justify-content: center;
+        font-size: 18px;
+        font-weight: 600;
+      }
+      .header__links{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .header__link-item{
+        margin: 10px 0;
       }
     }
   }
@@ -30,7 +44,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 80px;
+    height: 25%;
   }
   &__logo{
     font-size: 25px;
@@ -38,7 +52,7 @@
     letter-spacing: 1.5px;
   }
   &__links{
-      width: 40%;
+    width: 40%;
     display: flex;
     justify-content: space-between;
   }

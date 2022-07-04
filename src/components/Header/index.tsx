@@ -10,14 +10,14 @@ export const Header: FC = () => {
                         Demo
                     </div>
                     <div className="header__links">
-                        <Link className="header__link-item" to={"#"}>
-                            About
+                        <Link className="header__link-item" to={"/"}>
+                            Home
                         </Link>
-                        <Link className="header__link-item" to={"#"}>
+                        <Link className="header__link-item" to={"favorite"}>
                             Favorite
                         </Link>
-                        <Link className="header__link-item" to={"#"}>
-                            Contact
+                        <Link className="header__link-item" to={"/"}>
+                            About
                         </Link>
                     </div>
                     <button className="header__button-contact">

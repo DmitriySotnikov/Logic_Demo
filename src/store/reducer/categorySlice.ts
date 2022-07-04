@@ -46,8 +46,13 @@ const categorySlice = createSlice({
             } else state.filteredCategories = state.categories
         },
         sortCategories(state, {payload}: PayloadAction<string>) {
-            state.categories = Object.values(state.categories).sort((x: ICategory, y: ICategory ) => x[payload].localeCompare(y[payload]))
-        }
+            payload === "date"
+                ? state.categories = Object.values(state.categories).sort(
+                (x: ICategory, y: ICategory ) => x[payload].localeCompare(y[payload]))
+                : state.categories = Object.values(state.categories).sort((a: ICategory, b: ICategory ) => (
+                    a.date.split('.').reverse().join('-') > b.date.split('.').reverse().join('-')
+                ) ? 1 : -1 )
+        },
     },
     extraReducers: (builder) => {
         builder.addCase(fetchAllCategories.pending, (state) => {
@@ -70,7 +75,7 @@ export const {
     setActiveId,
     setSelector,
     deleteCategory,
-    sortCategories
+    sortCategories,
 } = categorySlice.actions;
 
 export default categorySlice.reducer;
