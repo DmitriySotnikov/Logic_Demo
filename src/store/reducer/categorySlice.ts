@@ -10,6 +10,7 @@ interface CategoryState {
     error: string
     selector: string
     isActiveId: string
+    isFavorite: string
 }
 
 const initialState: CategoryState = {
@@ -18,7 +19,8 @@ const initialState: CategoryState = {
     isLoading: false,
     error: "",
     selector: "",
-    isActiveId: ""
+    isActiveId: "",
+    isFavorite: ""
 };
 
 const categorySlice = createSlice({
@@ -30,6 +32,9 @@ const categorySlice = createSlice({
         },
         setActiveId(state, {payload}: PayloadAction<string>) {
             state.isActiveId = payload
+        },
+        setIsFavorite(state, {payload}: PayloadAction<string>){
+            state.isFavorite = payload
         },
         deleteCategory(state, {payload}: PayloadAction<string>) {
             const index = state.categories.findIndex(e => e.id === payload)
@@ -73,6 +78,7 @@ const categorySlice = createSlice({
 export const {
     selectionCategory,
     setActiveId,
+    setIsFavorite,
     setSelector,
     deleteCategory,
     sortCategories,

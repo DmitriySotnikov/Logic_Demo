@@ -15,20 +15,4 @@
     flex-wrap: wrap;
     justify-content: center;
   }
-  &__button-load{
-    min-width: 170px;
-    text-transform: uppercase;
-    font-weight: 800;
-    font-size: 15px;
-    padding: 10px 0;
-    border-radius: 10px;
-    border: $white;
-    background: $white;
-  }
-  &__buttons{
-    padding: 50px 0;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
 }

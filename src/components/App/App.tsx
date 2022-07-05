@@ -1,7 +1,7 @@
 import React, {FC, useEffect} from "react";
 import "../../styles/index.scss";
 import {Header} from "../Header";
-import {useAppDispatch, useAppSelector} from "../../hooks/redux";
+import {useAppDispatch} from "../../hooks/redux";
 import {fetchAllCategories} from "../../service";
 import {Outlet} from "react-router-dom";
 

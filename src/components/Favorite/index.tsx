@@ -1,10 +1,32 @@
 import React from 'react';
+import { Card } from "../Card";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
+import { deleteFavoriteCategory } from '../../store/reducer/favoriteSlice';
+
 
 export const Favorite = () => {
+
+    const dispatch = useAppDispatch()
+
+    const {favorite} = useAppSelector(state => state);
+
+    const deleteButtonHandler = (id: string) => {
+        dispatch(deleteFavoriteCategory(id))
+    };
+
     return (
-        <div className="selectors">
-            <div className="selectors__list">
-                Избранное
+        <div className="categories">
+            <div className="categories__content-cards">
+                {
+                    favorite.map( card =>
+                        <div className="card">
+                            <Card
+                                key={card.id}
+                                category={card}
+                                deleteButtonHandler={(id) => deleteButtonHandler(id)}
+                            />
+                        </div>
+                    )}
             </div>
         </div>
     );

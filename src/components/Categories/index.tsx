@@ -1,12 +1,11 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC, useEffect} from 'react';
 import {Card} from "../Card";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
-import {deleteCategory, selectionCategory, setActiveId} from '../../store/reducer/categorySlice';
+import {deleteCategory, selectionCategory, setActiveId, setIsFavorite} from '../../store/reducer/categorySlice';
 
 export const Categories: FC = () => {
 
     const dispatch = useAppDispatch()
-    const [isShow, setIsShow] = useState(false)
     const {filteredCategories, isActiveId, selector, isLoading} = useAppSelector(state => state.categories)
 
     useEffect(() => {
@@ -16,7 +15,6 @@ export const Categories: FC = () => {
             }
         };
         document.addEventListener('keydown', onKeypress);
-        //document.addEventListener('keyup', onKeypress);
         return () => {
             document.removeEventListener('keydown', onKeypress);
             document.removeEventListener('keyup', onKeypress);
@@ -27,20 +25,11 @@ export const Categories: FC = () => {
         return <h1 style={{display: "flex", justifyContent: "center"}}>Загрузка...</h1>
     }
 
-    const onActiveClass = (id: string) => {
-        if (id === isActiveId) {
-            dispatch(setActiveId(""))
-            setIsShow(false)
-        } else {
-            dispatch(setActiveId(id))
-            setIsShow(true)
-        }
-    }
+    const onActiveClass = (id: string) => id === isActiveId ? dispatch(setActiveId("")) : dispatch(setActiveId(id))
 
     const deleteButtonHandler = () => {
         dispatch(deleteCategory(isActiveId))
         dispatch(selectionCategory(selector))
-        setIsShow(false)
     }
 
     return (
@@ -53,19 +42,12 @@ export const Categories: FC = () => {
                             onClick={() => onActiveClass(el.id)}
                         >
                             <Card
-                                isShow={el.id === isActiveId}
-                                categoryName={el.categoryName}
-                                title={el.title}
-                                date={el.date}
-                                key={el.id}
+                                category={el}
                                 deleteButtonHandler={deleteButtonHandler}
                             />
                         </div>
                     )
                 }
-            </div>
-            <div className="categories__buttons">
-                <button className="categories__button-load" >load more</button>
             </div>
         </div>
     );

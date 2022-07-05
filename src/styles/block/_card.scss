@@ -1,25 +1,23 @@
 .card{
+  color: $blue;
   margin: 10px;
   width: 190px;
   height: 230px;
-  background: $header-card;
+  //background: $header-card;
   border-radius: 10px;
   padding: 20px;
+  box-shadow: 0 0 7px rgba(0,0,0,0.3);
 
   &--active{
     border: $green solid 2px;
   }
-  &__del-button{
-    min-width: 100px;
-    height: 30px;
-    border-radius: 20px;
-    border-color: $dark-grey;
-    font-size: 15px;
-    font-weight: 600;
-    color: $dark-grey;
-    display: none;
+  &__del-Button{
+    margin: 10px 0;
+    opacity: 0;
+    pointer-events: none;
     &--active{
-      display: block;
+      opacity: 1;
+      pointer-events: auto;
     }
   }
   &__inner{
@@ -28,29 +26,21 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: flex-start;
     align-items: flex-start;
   }
-  &__category-button{
-    max-width: 100px;
-    padding: 7px 10px;
-    background: $white-primary;
-    border-radius: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #424242;
-    font-size: 14px;
-    margin: 20px 0;
-    cursor: pointer;
+  &__btn{
+
   }
   &__title{
     font-size: 30px;
     font-weight: 700;
+    padding: 0 0 20px 0;
   }
   &__date{
-    padding: 10px 0;
-    font-size: 17px;
     color: $dark-grey;
+    padding: 30px 0 0 0;
+    font-size: 14px;
+    font-weight: 600;
   }
 }
