@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { FC } from 'react';
 
-export const ContactPage = () => {
+export const ContactPage: FC = () => {
     return (
         <div className="contact">
             <span className="contact__title">My contact:</span>

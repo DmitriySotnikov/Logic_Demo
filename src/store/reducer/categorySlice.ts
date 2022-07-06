@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import {ICategory} from "../../models/ICatagory";
-import {fetchAllCategories} from "../../service";
+import { ICategory } from "../../models/ICatagory";
+import { fetchAllCategories } from "../../service";
 
 interface CategoryState {
     filteredCategories: ICategory[]
@@ -10,7 +10,6 @@ interface CategoryState {
     error: string
     selector: string
     isActiveId: string
-    isFavorite: string
 }
 
 const initialState: CategoryState = {
@@ -20,7 +19,6 @@ const initialState: CategoryState = {
     error: "",
     selector: "",
     isActiveId: "",
-    isFavorite: ""
 };
 
 const categorySlice = createSlice({
@@ -32,9 +30,6 @@ const categorySlice = createSlice({
         },
         setActiveId(state, {payload}: PayloadAction<string>) {
             state.isActiveId = payload
-        },
-        setIsFavorite(state, {payload}: PayloadAction<string>){
-            state.isFavorite = payload
         },
         deleteCategory(state, {payload}: PayloadAction<string>) {
             const index = state.categories.findIndex(e => e.id === payload)
@@ -78,7 +73,6 @@ const categorySlice = createSlice({
 export const {
     selectionCategory,
     setActiveId,
-    setIsFavorite,
     setSelector,
     deleteCategory,
     sortCategories,

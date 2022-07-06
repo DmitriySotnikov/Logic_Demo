@@ -1,14 +1,14 @@
-import React from 'react';
-import {Sort} from "../components/Sort";
-import {Selectors} from "../components/Selectors";
-import {Categories} from "../components/Categories";
+import React, { FC } from 'react';
+import { Sort } from "../components/Sort";
+import { Selectors } from "../components/Selectors";
+import { Categories } from "../components/Categories";
 
-export const HomePage = () => {
+export const HomePage: FC = () => {
     return (
         <>
-            <Sort/>
+            <Sort />
             <Selectors />
-            <Categories/>
+            <Categories />
         </>
     );
 };

@@ -24,4 +24,4 @@ export const selectors = [
         name: "Motions",
         value: "Motions"
     },
-]
+];

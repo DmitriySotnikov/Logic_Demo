@@ -1,6 +1,6 @@
-import {createAsyncThunk} from "@reduxjs/toolkit";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import {ICategory} from "../models/ICatagory";
+import { ICategory } from "../models/ICatagory";
 
 export const fetchAllCategories = createAsyncThunk(
     "categories/fetchAllCategories",
@@ -12,5 +12,5 @@ export const fetchAllCategories = createAsyncThunk(
             return thunkAPI.rejectWithValue("Ошибка загрузки")
         }
     }
-)
+);
 

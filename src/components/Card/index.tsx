@@ -1,9 +1,9 @@
 import React, {FC, useState} from 'react';
-import {useAppDispatch, useAppSelector} from "../../hooks/redux";
-import {selectionCategory, setIsFavorite, setSelector} from '../../store/reducer/categorySlice';
-import {ICategory} from "../../models/ICatagory";
-import { addFavoriteCategories } from '../../store/reducer/favoriteSlice';
 import {Button} from "../Button";
+import {ICategory} from "../../models/ICatagory";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
+import { selectionCategory, setSelector } from '../../store/reducer/categorySlice';
+import { addFavoriteCategories } from '../../store/reducer/favoriteSlice';
 
 interface IProps {
     category: ICategory
@@ -15,6 +15,7 @@ export const Card:FC<IProps> = ({category, deleteButtonHandler}) => {
     const [active, setActive] = useState(false);
 
     const {isActiveId} = useAppSelector(state => state.categories);
+    const {isFavorite} = useAppSelector(state => state.favorite);
 
     const dispatch = useAppDispatch();
 
@@ -53,7 +54,7 @@ export const Card:FC<IProps> = ({category, deleteButtonHandler}) => {
                 >
                     Удалить
                 </button>
-                <Button textBtn={"В избранное"} onClick={(e) => favoriteHandler(e)}/>
+                {!isFavorite && <Button textBtn={"В избранное"} onClick={(e) => favoriteHandler(e)}/>}
             </div>
 
             <span className="card__date">{category.date}</span>

@@ -1,18 +1,17 @@
 import React, {FC} from 'react';
-import {useAppDispatch, useAppSelector} from "../../hooks/redux";
-import {selectionCategory, sortCategories } from '../../store/reducer/categorySlice';
-
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
+import { selectionCategory, sortCategories } from '../../store/reducer/categorySlice';
 
 export const Sort: FC = () => {
 
-    const dispatch = useAppDispatch()
-    const {selector} = useAppSelector(state => state.categories)
+    const dispatch = useAppDispatch();
+    const {selector} = useAppSelector(state => state.categories);
 
     const selectHandler = (e:  React.ChangeEvent<HTMLSelectElement>) => {
         const key: string = e.target.value
         dispatch(sortCategories(key))
         dispatch(selectionCategory(selector))
-    }
+    };
 
     // Делать .map для двух значений не вижу.
     return (

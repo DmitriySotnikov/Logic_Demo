@@ -1,8 +1,7 @@
 import React, {FC} from "react";
-import {selectors} from "../../mock/selectors"
-import {useAppDispatch, useAppSelector} from "../../hooks/redux";
-import {selectionCategory, setSelector} from "../../store/reducer/categorySlice";
-
+import { selectors } from "../../mock/selectors"
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
+import { selectionCategory, setSelector } from "../../store/reducer/categorySlice";
 
 export const Selectors: FC = () => {
 

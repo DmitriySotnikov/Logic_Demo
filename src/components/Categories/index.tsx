@@ -1,12 +1,12 @@
-import React, {FC, useEffect} from 'react';
+import React, { FC, useEffect } from 'react';
 import {Card} from "../Card";
-import {useAppDispatch, useAppSelector} from "../../hooks/redux";
-import {deleteCategory, selectionCategory, setActiveId, setIsFavorite} from '../../store/reducer/categorySlice';
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
+import { deleteCategory, selectionCategory, setActiveId } from '../../store/reducer/categorySlice';
 
 export const Categories: FC = () => {
 
-    const dispatch = useAppDispatch()
-    const {filteredCategories, isActiveId, selector, isLoading} = useAppSelector(state => state.categories)
+    const dispatch = useAppDispatch();
+    const {filteredCategories, isActiveId, selector, isLoading} = useAppSelector(state => state.categories);
 
     useEffect(() => {
         const onKeypress = (e: KeyboardEvent) => {
@@ -30,7 +30,7 @@ export const Categories: FC = () => {
     const deleteButtonHandler = () => {
         dispatch(deleteCategory(isActiveId))
         dispatch(selectionCategory(selector))
-    }
+    };
 
     return (
         <div className="categories">

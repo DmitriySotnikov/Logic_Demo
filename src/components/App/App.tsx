@@ -1,9 +1,9 @@
-import React, {FC, useEffect} from "react";
+import React, { FC, useEffect } from "react";
 import "../../styles/index.scss";
-import {Header} from "../Header";
-import {useAppDispatch} from "../../hooks/redux";
-import {fetchAllCategories} from "../../service";
-import {Outlet} from "react-router-dom";
+import { Header } from "../Header";
+import { useAppDispatch } from "../../hooks/redux";
+import { fetchAllCategories } from "../../service";
+import { Outlet } from "react-router-dom";
 
 
 export const App: FC = () => {
@@ -12,7 +12,7 @@ export const App: FC = () => {
 
     useEffect(() => {
         dispatch(fetchAllCategories())
-    }, [])
+    }, []);
 
     return (
         <div>
@@ -22,4 +22,4 @@ export const App: FC = () => {
             </div>
         </div>
     );
-}
+};

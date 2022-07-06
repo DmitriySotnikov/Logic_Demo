@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Card } from "../Card";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
-import { deleteFavoriteCategory } from '../../store/reducer/favoriteSlice';
-
+import { deleteFavoriteCategory, setIsFavorite } from '../../store/reducer/favoriteSlice';
 
 export const Favorite = () => {
 
-    const dispatch = useAppDispatch()
+    useEffect(() => {
+        dispatch(setIsFavorite(true))
+        return () => {dispatch(setIsFavorite(false))}
+    }, []);
+
+    const dispatch = useAppDispatch();
 
     const {favorite} = useAppSelector(state => state);
 
@@ -17,9 +21,9 @@ export const Favorite = () => {
     return (
         <div className="categories">
             <div className="categories__content-cards">
-                { favorite.length === 0 && <span className="categories__info">No category in favorite</span>}
+                { favorite.favoriteCategory.length === 0 && <span className="categories__info">No category in favorite</span>}
                 {
-                    favorite.map( card =>
+                    favorite.favoriteCategory.map( card =>
                         <div className="card">
                             <Card
                                 key={card.id}
