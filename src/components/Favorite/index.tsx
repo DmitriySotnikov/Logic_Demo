@@ -17,6 +17,7 @@ export const Favorite = () => {
     return (
         <div className="categories">
             <div className="categories__content-cards">
+                { favorite.length === 0 && <span className="categories__info">No category in favorite</span>}
                 {
                     favorite.map( card =>
                         <div className="card">

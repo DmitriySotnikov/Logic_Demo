@@ -6,6 +6,8 @@ import { store } from './store/store'
 import { Provider } from 'react-redux'
 import {Favorite} from "./components/Favorite";
 import {HomePage} from "./page/homePage";
+import {AboutPage} from "./page/aboutPage";
+import {ContactPage} from "./page/contactPage";
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
@@ -18,7 +20,8 @@ root.render(
                     <Route path="/" element={<App/>}>
                         <Route path="" element={<HomePage/>} />
                         <Route path="favorite" element={<Favorite/>} />
-
+                        <Route path="about" element={<AboutPage/>} />
+                        <Route path="contact" element={<ContactPage/>} />
                     </Route>
                 </Routes>
             </BrowserRouter>

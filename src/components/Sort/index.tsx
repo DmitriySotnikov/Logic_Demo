@@ -17,16 +17,12 @@ export const Sort: FC = () => {
     // Делать .map для двух значений не вижу.
     return (
         <div className="sort">
-            <form>
-                <label className="sort__title">
-                    Отсортировать по :
-                    <br/>
-                    <select className="sort__selector" onChange={e => selectHandler(e)} defaultValue={""}>
-                        <option value="" disabled>Не выбрано</option>
+            <form className="sort__form">
+                    <select className="selectors__select" onChange={e => selectHandler(e)} defaultValue={""}>
+                        <option value="" disabled>Выберите сортировку</option>
                         <option value="date">По дате</option>
                         <option value="title">По названию</option>
                     </select>
-                </label>
             </form>
         </div>
     );

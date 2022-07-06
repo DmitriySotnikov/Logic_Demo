@@ -1,0 +1,16 @@
+.contact{
+  padding: 50px 0;
+  font-size: 19px;
+  font-family: sans-serif;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  &__title{
+    padding: 0 10px 20px 0;
+  }
+  &__mail{
+    color: $blue;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+}
