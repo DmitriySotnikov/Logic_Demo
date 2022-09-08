@@ -1,6 +1,6 @@
-import React, {FC, useState} from 'react';
-import {Button} from "../Button";
-import {ICategory} from "../../models/ICatagory";
+import React, { FC, useState } from 'react';
+import { Button } from "../Button";
+import { ICategory } from "../../models/ICatagory";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { selectionCategory, setSelector } from '../../store/reducer/categorySlice';
 import { addFavoriteCategories } from '../../store/reducer/favoriteSlice';

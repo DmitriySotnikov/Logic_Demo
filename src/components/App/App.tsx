@@ -15,7 +15,7 @@ export const App: FC = () => {
     }, []);
 
     return (
-        <div>
+        <div className="main">
             <Header/>
             <div className="container">
                 <Outlet/>
