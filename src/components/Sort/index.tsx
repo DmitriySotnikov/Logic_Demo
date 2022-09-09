@@ -13,7 +13,6 @@ export const Sort: FC = () => {
         dispatch(selectionCategory(selector))
     };
 
-    // Делать .map для двух значений не вижу.
     return (
         <div className="sort">
             <form className="sort__form">
