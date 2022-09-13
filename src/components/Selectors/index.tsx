@@ -9,8 +9,8 @@ export const Selectors: FC = () => {
     const {selector} = useAppSelector(state => state.categories);
 
     const selectorHandler = (value: string) => {
-        dispatch(setSelector(value))
-        dispatch(selectionCategory(value))
+        dispatch(setSelector(value));
+        dispatch(selectionCategory(value));
     };
 
     return (

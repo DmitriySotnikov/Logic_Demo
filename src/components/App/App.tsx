@@ -1,25 +1,24 @@
 import React, { FC, useEffect } from "react";
-import "../../styles/index.scss";
+import { Outlet } from "react-router-dom";
 import { Header } from "../Header";
 import { useAppDispatch } from "../../hooks/redux";
 import { fetchAllCategories } from "../../service";
-import { Outlet } from "react-router-dom";
+import "../../styles/index.scss";
 
-
-export const App: FC = () => {
-
-    const dispatch = useAppDispatch()
+function App() {
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
-        dispatch(fetchAllCategories())
+        dispatch(fetchAllCategories()).catch(() => {});
     }, []);
 
     return (
         <div className="main">
-            <Header/>
+            <Header />
             <div className="container">
-                <Outlet/>
+                <Outlet />
             </div>
         </div>
     );
-};
+}
+export default App as FC;
