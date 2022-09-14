@@ -7,7 +7,7 @@ interface CategoryState {
     filteredCategories: ICategory[];
     categories: ICategory[];
     isLoading: boolean;
-    error: any;
+    error: string;
     selector: string;
     isActiveId: string;
 }
@@ -16,7 +16,7 @@ const initialState: CategoryState = {
     filteredCategories: [],
     categories: [],
     isLoading: false,
-    error: null,
+    error: "",
     selector: "",
     isActiveId: "",
 };
@@ -41,13 +41,19 @@ const categorySlice = createSlice({
         },
         selectionCategory(state, { payload }: PayloadAction<string>) {
             if (payload) {
-                // state.filteredCategories = [];
+                /* state.filteredCategories = [];
                 const newState = { ...state, filteredCategories: [] };
-                state.categories.forEach((category, i) => {
+                state.categories.forEach((category) => {
                     if (category.categoryName === payload) {
                         state.filteredCategories.push({ ...category });
                     }
-                });
+                }); */
+                return {
+                    ...state,
+                    filteredCategories: state.categories.filter(
+                        (c) => c.categoryName === payload
+                    ),
+                };
             }
             return { ...state, filteredCategories: state.categories };
             // else state.filteredCategories = state.categories;
@@ -95,11 +101,10 @@ const categorySlice = createSlice({
         // state.categories = action.payload;
         builder.addCase(
             fetchAllCategories.rejected,
-            (state, action: PayloadAction<any>) => ({
-                ...state,
-                isLoading: false,
-                error: action.payload,
-            })
+            (state, action: PayloadAction<any>) => {
+                const errorString = String(action.payload);
+                return { ...state, isLoading: false, error: errorString };
+            }
         );
         // state.isLoading = false;
         // state.error = action.payload;
