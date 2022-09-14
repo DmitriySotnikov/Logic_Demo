@@ -17,15 +17,20 @@ const favoriteSlice = createSlice({
     initialState,
     reducers: {
         setIsFavorite(state, { payload }: PayloadAction<boolean>) {
-            state.isFavorite = payload;
+            return { ...state, isFavorite: payload };
+            // state.isFavorite = payload;
         },
         addFavoriteCategories(state, action: PayloadAction<ICategory>) {
             state.favoriteCategory.push(action.payload);
         },
-        deleteFavoriteCategory: (state, { payload }: PayloadAction<string>) => {
-            state.favoriteCategory = state.favoriteCategory.filter(
-                (e) => e.id !== payload
-            );
+        deleteFavoriteCategory(state, { payload }: PayloadAction<string>) {
+            return {
+                ...state,
+                favoriteCategory: state.favoriteCategory.filter(
+                    (e) => e.id !== payload
+                ),
+            };
+            // state.favoriteCategory = state.favoriteCategory.filter((e) => e.id !== payload);
         },
     },
 });

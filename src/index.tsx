@@ -6,8 +6,8 @@ import App from "./components/App/App";
 import { store } from "./store/store";
 import Favorite from "./components/Favorite";
 import HomePage from "./page/homePage";
-import { AboutPage } from "./page/aboutPage";
-import { ContactPage } from "./page/contactPage";
+import AboutPage from "./page/aboutPage";
+import ContactPage from "./page/contactPage";
 
 const root = ReactDOM.createRoot(
     document.getElementById("root") as HTMLElement
