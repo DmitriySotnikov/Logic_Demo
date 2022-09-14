@@ -31,7 +31,7 @@ function Favorite() {
                     </span>
                 )}
                 {favorite.favoriteCategory.map((card) => (
-                    <div className="card">
+                    <div className="card" key={card.id}>
                         <Card
                             key={card.id}
                             category={card}

@@ -1,37 +1,40 @@
-import React, { FC } from 'react';
+import React, { FC } from "react";
 import { Link, NavLink } from "react-router-dom";
 
-export const Header: FC = () => {
+function Header() {
     return (
         <div className="header">
             <div className="header__container">
                 <div className="header__nav">
-                    <Link className="header__logo" to={"/"}>
+                    <Link className="header__logo" to="/">
                         ReactApp
                     </Link>
                     <div className="header__links">
-                        <NavLink className="header__link-item" to={"/"}>
+                        <NavLink className="header__link-item" to="/">
                             Home
                         </NavLink>
-                        <NavLink className="header__link-item" to={"favorite"}>
+                        <NavLink className="header__link-item" to="favorite">
                             Favorite
                         </NavLink>
-                        <NavLink className="header__link-item" to={"about"}>
+                        <NavLink className="header__link-item" to="about">
                             About
                         </NavLink>
                     </div>
-                    <Link to={"contact"}>
-                        <button className="header__button-contact">
+                    <Link to="contact">
+                        <button
+                            className="header__button-contact"
+                            type="button"
+                        >
                             Contact
                         </button>
                     </Link>
                 </div>
                 <div className="header__bottom">
-                    <span className="header__bottom-title">
-                        Demo
-                    </span>
+                    <span className="header__bottom-title">Demo</span>
                 </div>
             </div>
         </div>
     );
-};
+}
+
+export default Header as FC;

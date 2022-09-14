@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { ICategory } from "../../models/ICatagory";
-import { fetchAllCategories } from "../../service";
+import fetchAllCategories from "../../service";
 
 interface CategoryState {
     filteredCategories: ICategory[];
@@ -41,13 +41,15 @@ const categorySlice = createSlice({
         },
         selectionCategory(state, { payload }: PayloadAction<string>) {
             if (payload) {
-                state.filteredCategories = [];
+                // state.filteredCategories = [];
+                const newState = { ...state, filteredCategories: [] };
                 state.categories.forEach((category, i) => {
                     if (category.categoryName === payload) {
                         state.filteredCategories.push({ ...category });
                     }
                 });
             }
+            return { ...state, filteredCategories: state.categories };
             // else state.filteredCategories = state.categories;
         },
         sortCategories(state, { payload }: PayloadAction<string>) {
