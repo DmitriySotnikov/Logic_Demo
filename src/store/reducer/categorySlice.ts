@@ -27,11 +27,9 @@ const categorySlice = createSlice({
     reducers: {
         setSelector(state, { payload }: PayloadAction<string>) {
             return { ...state, selector: payload };
-            // state.selector = payload;
         },
         setActiveId(state, { payload }: PayloadAction<string>) {
             return { ...state, isActiveId: payload };
-            // state.isActiveId = payload;
         },
         deleteCategory(state, { payload }: PayloadAction<string>) {
             const index = state.categories.findIndex((e) => e.id === payload);
@@ -41,13 +39,6 @@ const categorySlice = createSlice({
         },
         selectionCategory(state, { payload }: PayloadAction<string>) {
             if (payload) {
-                /* state.filteredCategories = [];
-                const newState = { ...state, filteredCategories: [] };
-                state.categories.forEach((category) => {
-                    if (category.categoryName === payload) {
-                        state.filteredCategories.push({ ...category });
-                    }
-                }); */
                 return {
                     ...state,
                     filteredCategories: state.categories.filter(
@@ -56,7 +47,6 @@ const categorySlice = createSlice({
                 };
             }
             return { ...state, filteredCategories: state.categories };
-            // else state.filteredCategories = state.categories;
         },
         sortCategories(state, { payload }: PayloadAction<string>) {
             if (payload === "date")
@@ -85,8 +75,6 @@ const categorySlice = createSlice({
             ...state,
             isLoading: true,
         }));
-        // state.isLoading = true
-
         builder.addCase(
             fetchAllCategories.fulfilled,
             (state, action: PayloadAction<ICategory[]>) => ({
@@ -96,9 +84,6 @@ const categorySlice = createSlice({
                 categories: action.payload,
             })
         );
-        // state.isLoading = false;
-        // state.filteredCategories = action.payload;
-        // state.categories = action.payload;
         builder.addCase(
             fetchAllCategories.rejected,
             (state, action: PayloadAction<any>) => {
@@ -106,8 +91,6 @@ const categorySlice = createSlice({
                 return { ...state, isLoading: false, error: errorString };
             }
         );
-        // state.isLoading = false;
-        // state.error = action.payload;
     },
 });
 

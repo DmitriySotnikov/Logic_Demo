@@ -7,14 +7,14 @@ import {
 } from "../../store/reducer/favoriteSlice";
 
 function Favorite() {
+    const dispatch = useAppDispatch();
+
     useEffect(() => {
         dispatch(setIsFavorite(true));
         return () => {
             dispatch(setIsFavorite(false));
         };
     }, []);
-
-    const dispatch = useAppDispatch();
 
     const { favorite } = useAppSelector((state) => state);
 

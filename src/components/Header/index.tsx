@@ -1,14 +1,14 @@
 import React, { FC } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function Header() {
     return (
         <div className="header">
             <div className="header__container">
                 <div className="header__nav">
-                    <Link className="header__logo" to="/">
+                    <NavLink className="header__logo" to="/">
                         ReactApp
-                    </Link>
+                    </NavLink>
                     <div className="header__links">
                         <NavLink className="header__link-item" to="/">
                             Home
@@ -20,14 +20,14 @@ function Header() {
                             About
                         </NavLink>
                     </div>
-                    <Link to="contact">
+                    <NavLink to="contact">
                         <button
                             className="header__button-contact"
                             type="button"
                         >
                             Contact
                         </button>
-                    </Link>
+                    </NavLink>
                 </div>
                 <div className="header__bottom">
                     <span className="header__bottom-title">Demo</span>

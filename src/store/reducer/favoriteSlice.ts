@@ -18,7 +18,6 @@ const favoriteSlice = createSlice({
     reducers: {
         setIsFavorite(state, { payload }: PayloadAction<boolean>) {
             return { ...state, isFavorite: payload };
-            // state.isFavorite = payload;
         },
         addFavoriteCategories(state, action: PayloadAction<ICategory>) {
             state.favoriteCategory.push(action.payload);
@@ -30,7 +29,6 @@ const favoriteSlice = createSlice({
                     (e) => e.id !== payload
                 ),
             };
-            // state.favoriteCategory = state.favoriteCategory.filter((e) => e.id !== payload);
         },
     },
 });

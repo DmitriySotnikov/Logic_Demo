@@ -47,7 +47,6 @@ function Card({ category, deleteButtonHandler }: IProps) {
             onClick={classNameHandler}
             aria-hidden="true"
             role="menuitem"
-            // tabIndex={0}
         >
             <span className="card__title">{category.title}</span>
             <div className="categories__btn">
@@ -60,7 +59,7 @@ function Card({ category, deleteButtonHandler }: IProps) {
                 </button>
                 <button
                     className={
-                        isActiveId === category.id || active
+                        isActiveId === category.id || (isFavorite && active)
                             ? "btn card__del-Button card__del-Button--active"
                             : "btn card__del-Button"
                     }
