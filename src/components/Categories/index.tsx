@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useRef } from "react";
 import Card from "../Card";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import {
@@ -9,8 +9,35 @@ import {
 
 function Categories() {
     const dispatch = useAppDispatch();
+
+    const ref = useRef<HTMLDivElement>(null);
+
     const { filteredCategories, isActiveId, selector, isLoading } =
         useAppSelector((state) => state.categories);
+
+    const handleClickOutside = (event: MouseEvent) => {
+        if (
+            ref.current &&
+            !ref.current.contains(event.target as Node) &&
+            ref.current
+        ) {
+            dispatch(setActiveId(""));
+        }
+    };
+    const handleHideDropdown = (event: KeyboardEvent) => {
+        if (event.key === "Escape") {
+            dispatch(setActiveId(""));
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener("click", handleClickOutside, true);
+        document.addEventListener("keydown", handleHideDropdown, true);
+        return () => {
+            document.removeEventListener("click", handleClickOutside, true);
+            document.removeEventListener("keydown", handleHideDropdown, true);
+        };
+    });
 
     if (isLoading) {
         return (
@@ -31,7 +58,7 @@ function Categories() {
     };
 
     return (
-        <div className="categories">
+        <div className="categories" ref={ref}>
             <div className="categories__content-cards">
                 {filteredCategories.map((el) => (
                     <div
