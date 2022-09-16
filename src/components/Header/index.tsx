@@ -1,14 +1,14 @@
 import React, { FC } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 function Header() {
     return (
         <div className="header">
             <div className="header__container">
                 <div className="header__nav">
-                    <NavLink className="header__logo" to="/">
+                    <Link className="header__logo" to="/">
                         ReactApp
-                    </NavLink>
+                    </Link>
                     <div className="header__links">
                         <NavLink className="header__link-item" to="/">
                             Home
