@@ -8,7 +8,7 @@
     justify-content: center;
     height: 100%;
     width: 100%;
-    @media (max-width: 1199px) {
+    @media (max-width: 991px) {
        display: none;
     }
   }
@@ -28,7 +28,7 @@
     display: none;
     height: 100%;
     width: 100%;
-    @media (max-width: 1199px) {
+    @media (max-width: 991px) {
       display: flex;
       align-items: center;
       justify-content: center;
