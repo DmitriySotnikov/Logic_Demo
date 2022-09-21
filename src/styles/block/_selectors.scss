@@ -8,19 +8,10 @@
     justify-content: center;
     height: 100%;
     width: 100%;
-  }
-
-  @media (max-width: 1199px) {
-    .selectors__list {
-      display: none;
-    }
-    .selectors__form{
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    @media (max-width: 1199px) {
+       display: none;
     }
   }
-
   &__items {
     text-transform: uppercase;
     font-size: 15px;
@@ -37,6 +28,11 @@
     display: none;
     height: 100%;
     width: 100%;
+    @media (max-width: 1199px) {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   }
   &__select{
     padding: 0 10px;
