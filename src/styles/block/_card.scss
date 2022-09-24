@@ -5,8 +5,7 @@
   min-height: 230px;
   border-radius: 10px;
   padding: 20px;
-  box-shadow: 0 0 7px rgba(0,0,0,0.3);
-
+  box-shadow: $shadow;
   &--active{
     border: $green solid 2px;
   }
@@ -28,7 +27,6 @@
     align-items: flex-start;
   }
   &__btn{
-
   }
   &__title{
     font-size: 27px;

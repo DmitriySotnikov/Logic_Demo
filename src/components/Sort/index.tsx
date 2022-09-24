@@ -21,9 +21,9 @@ function Sort() {
                 <select
                     className="selectors__select"
                     onChange={(e) => selectHandler(e)}
-                    defaultValue=""
+                    defaultValue="&nbsp;"
                 >
-                    <option value="" disabled>
+                    <option value="&nbsp;" disabled>
                         Выберите сортировку
                     </option>
                     <option value="date">По дате</option>
